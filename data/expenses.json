@@ -1,0 +1,48 @@
+{
+    "expenses": [
+      {
+        "name": "Grocery Shopping",
+        "category": "Food",
+        "amount": 75.50,
+        "date": "2025-03-01"
+      },
+      {
+        "name": "Bus Pass",
+        "category": "Transport",
+        "amount": 45.00,
+        "date": "2025-03-03"
+      },
+      {
+        "name": "Coffee",
+        "category": "Food",
+        "amount": 4.25,
+        "date": "2025-03-05"
+      },
+      {
+        "name": "Electricity Bill",
+        "category": "Utilities",
+        "amount": 120.00,
+        "date": "2025-03-10"
+      },
+      {
+        "name": "Movie Night",
+        "category": "Entertainment",
+        "amount": 30.00,
+        "date": "2025-03-12"
+      },
+      {
+        "name": "Gym Membership",
+        "category": "Health",
+        "amount": 60.00,
+        "date": "2025-03-15"
+      }
+    ],
+    "budget": {
+      "Food": 200.0,
+      "Transport": 100.0,
+      "Utilities": 150.0,
+      "Entertainment": 80.0,
+      "Health": 100.0
+    }
+  }
+  
