@@ -9,6 +9,7 @@ from models.budget import Budget
 from utils.file_handler import load_data, save_data
 
 DATA_FILE = 'data/expenses.json'
+LOG_FILE = 'data/transactions.log'  # ✅ Log file for raw transactions
 
 class ExpenseTracker:
     def __init__(self):
@@ -28,6 +29,11 @@ class ExpenseTracker:
         }
         save_data(DATA_FILE, data)
 
+    def log_transaction(self, expense):
+        """✅ Log each transaction to a separate text file."""
+        with open(LOG_FILE, "a") as f:
+            f.write(f"{expense.date.strftime('%Y-%m-%d')} | {expense.category:<12} | {expense.name:<20} | ${expense.amount:.2f}\n")
+
     def add_expense(self):
         try:
             name = input("Expense name: ")
@@ -38,6 +44,7 @@ class ExpenseTracker:
 
             expense = Expense(name, category, amount, date)
             self.expenses.append(expense)
+            self.log_transaction(expense)  # ✅ Log to .log file
             self.save()
             print("✅ Expense added successfully.")
         except Exception as e:
@@ -51,6 +58,20 @@ class ExpenseTracker:
         print("\n--- All Expenses ---")
         for idx, e in enumerate(self.expenses, 1):
             print(f"{idx}. {e.date.date()} | {e.category} | {e.name} - ${e.amount:.2f}")
+
+    def view_expenses_by_month(self):
+        month_str = input("Enter month (YYYY-MM): ").strip()
+        try:
+            print(f"\n--- Expenses for {month_str} ---")
+            found = False
+            for idx, e in enumerate(self.expenses, 1):
+                if e.date.strftime("%Y-%m") == month_str:
+                    print(f"{idx}. {e.date.date()} | {e.category} | {e.name} - ${e.amount:.2f}")
+                    found = True
+            if not found:
+                print("No expenses found for this month.")
+        except Exception as e:
+            print(f"❌ Error: {e}")
 
     def set_budget(self):
         try:

@@ -11,7 +11,8 @@ def print_menu():
     print("4. View Budget Summary")
     print("5. Generate Report")
     print("6. Export Data to CSV")
-    print("7. Exit")
+    print("7. View Expenses by Month")  # ✅ New option
+    print("8. Exit")
 
 def main():
     tracker = ExpenseTracker()
@@ -19,7 +20,7 @@ def main():
 
     while True:
         print_menu()
-        choice = input("Select an option (1-7): ").strip()
+        choice = input("Select an option (1-8): ").strip()
 
         if choice == '1':
             tracker.add_expense()
@@ -34,6 +35,8 @@ def main():
         elif choice == '6':
             tracker.export_to_csv()
         elif choice == '7':
+            tracker.view_expenses_by_month()  # ✅ Handles month filtering
+        elif choice == '8':
             print("Goodbye!")
             break
         else:
